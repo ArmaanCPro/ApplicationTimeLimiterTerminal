@@ -1,3 +1,16 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System;
+using System.Runtime.CompilerServices;
 
-Console.WriteLine("Hello, World!");
+
+namespace ApplicationTimeLimiterTerminal
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            KillProcess explorer = new KillProcess();
+            
+            explorer.Kill("explorer", false);
+        }
+    }
+}
