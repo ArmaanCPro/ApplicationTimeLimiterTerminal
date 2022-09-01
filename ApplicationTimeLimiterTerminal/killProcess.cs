@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Dynamic;
 
 namespace ApplicationTimeLimiterTerminal;
 
@@ -13,13 +14,21 @@ public class KillProcess
             process.WaitForExit();
         }
             
-    }
+    } 
     public void Kill(string processName)
     {
-        foreach (var process in Process.GetProcessesByName(processName))
+        foreach (var process in Process.GetProcessesByName(processName).Skip(1))
         {
             process.CloseMainWindow();
         }
             
+    }
+
+    private string processName = "explorer";
+
+    public string ProcessName
+    {
+        get => processName;
+        set => processName = value;
     }
 }
