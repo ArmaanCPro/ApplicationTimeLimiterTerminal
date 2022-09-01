@@ -10,7 +10,10 @@ namespace ApplicationTimeLimiterTerminal
         {
             KillProcess explorer = new KillProcess();
             
-            explorer.Kill("explorer", false);
+            Console.WriteLine("Which program would you like to terminate?");
+            
+            string processName = Console.ReadLine();
+            explorer.Kill(processName, false);
             
         }
     }
