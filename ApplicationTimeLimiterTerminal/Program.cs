@@ -10,7 +10,8 @@ namespace ApplicationTimeLimiterTerminal
         {
             KillProcess explorer = new KillProcess();
             
-            explorer.Kill("explorer", false);
+            explorer.Kill("explorer");
+            
         }
     }
 }
