@@ -13,7 +13,8 @@ namespace ApplicationTimeLimiterTerminal
 
             explorer.ProcessName = Convert.ToString(Console.ReadLine());
 
-            if (explorer.ProcessName != null) explorer.Kill(explorer.ProcessName);
+            explorer.Kill(explorer.ProcessName, false);
+
         }
     }
 }

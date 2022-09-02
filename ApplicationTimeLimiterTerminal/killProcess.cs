@@ -6,7 +6,7 @@ namespace ApplicationTimeLimiterTerminal;
 public class KillProcess
 {
     //Overload Kill method with ClosMainWindow and Kill methods
-    public void Kill(string processName, bool killFamily)
+    public void Kill(string? processName, bool killFamily)
     {
         foreach (var process in Process.GetProcessesByName(processName))
         {
@@ -15,7 +15,7 @@ public class KillProcess
         }
             
     } 
-    public void Kill(string processName)
+    public void Kill(string? processName)
     {
         foreach (var process in Process.GetProcessesByName(processName).Skip(1))
         {
@@ -24,11 +24,5 @@ public class KillProcess
             
     }
 
-    private string processName = "explorer";
-
-    public string ProcessName
-    {
-        get => processName;
-        set => processName = value;
-    }
+    public string? ProcessName { get; set; } = "explorer";
 }
