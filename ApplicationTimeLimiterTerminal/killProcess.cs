@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Dynamic;
+using Timer = System.Timers.Timer;
 
 namespace ApplicationTimeLimiterTerminal;
 
@@ -91,17 +92,63 @@ public class KillProcess
         else
         {
             Console.WriteLine("You have " + _runtime.TotalMinutes + " minutes left");
-            RemainingTime = _runtime;
             
+            Console.WriteLine("Would you like to set a timer? (y/n)");
+            char answer = char.Parse(Console.ReadLine());
             
-            Console.WriteLine();
+            if (answer == 'y')
+            {
+                RemainingTime = _runtime;
+            
+                RemainingTimer.Interval = RemainingTime.Milliseconds;
+                RemainingTimer.Start();
+
+                TimedProcessName = processName;
+
+                Console.WriteLine("Done");
+                Console.WriteLine();
+                
+            }
+            else
+            {
+                
+            }
+            
+
         }
+        
+    }
+    
+    public void SetTimer()
+    {
+        Console.WriteLine("How long would you like the limit to be?");
+        float time = float.Parse(Console.ReadLine());
+
+
+        Console.WriteLine("What is the name of the process?");
+
+        string processName = Console.ReadLine().ToString();
+
+        TimedProcessName = processName;
+        
+        RemainingTimer.Interval = time * 1000;
+        RemainingTimer.Start();
+        
+    }
+
+    void HandleTimer()
+    {
+        Kill(TimedProcessName);
     }
 
     public string? ProcessName { get; set; } = "explorer";
     
     private TimeSpan _runtime;
     private TimeSpan RemainingTime;
+    
+    private System.Timers.Timer RemainingTimer = new System.Timers.Timer(1000000000);
 
     private float limit;
+
+    private string TimedProcessName;
 }

@@ -31,6 +31,8 @@ static class Program
         
         KillProcess explorer = new KillProcess();
 
+        bool KillingProcess = true;
+
         while (isRunning)
         {
             
@@ -40,31 +42,47 @@ static class Program
                 break;
             }
             
-            Console.WriteLine("Enter the program name");
+            
+            Console.WriteLine("1. Kill Process");
+            Console.WriteLine("2. Set Limit");
+            Console.WriteLine("3. Exit");
+            
+            int choice = Convert.ToInt32(Console.ReadLine());
 
-            explorer.ProcessName = Convert.ToString(Console.ReadLine());
+            if (choice == 1)
+            {
+                Console.WriteLine("Enter the program name");
+
+                explorer.ProcessName = Convert.ToString(Console.ReadLine());
                 
-            explorer.KillIfLimitIsReached(explorer.ProcessName);
+                explorer.KillIfLimitIsReached(explorer.ProcessName);
             
-            Thread.Sleep(1000);
+                Thread.Sleep(1000);
             
             
             
-            Console.WriteLine("Would you like to set another limit? (y/n)");
-            char answer = Convert.ToChar(Console.ReadLine());
-            if (answer == 'y')
-            {
-                isRunning = true;
+                Console.WriteLine("Would you like to set another limit? (y/n)");
+                char answer = Convert.ToChar(Console.ReadLine());
+                if (answer == 'y')
+                {
+                    isRunning = true;
+                }
+                else if (answer == 'n')
+                {
+                    isRunning = false;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input");
+                    isRunning = false;
+                }
             }
-            else if (answer == 'n')
+            
+            else if (choice == 2)
             {
-                isRunning = false;
+                
             }
-            else
-            {
-                Console.WriteLine("Invalid input");
-                isRunning = false;
-            }
+           
         }
 
         
