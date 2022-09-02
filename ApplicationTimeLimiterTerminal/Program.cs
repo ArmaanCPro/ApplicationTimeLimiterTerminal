@@ -3,18 +3,17 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 
-namespace ApplicationTimeLimiterTerminal
+namespace ApplicationTimeLimiterTerminal;
+
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            KillProcess explorer = new KillProcess();
+        KillProcess explorer = new KillProcess();
 
-            explorer.ProcessName = Convert.ToString(Console.ReadLine());
+        explorer.ProcessName = Convert.ToString(Console.ReadLine());
 
-            explorer.Kill(explorer.ProcessName, false);
+        explorer.Kill(explorer.ProcessName, false);
 
-        }
     }
 }
