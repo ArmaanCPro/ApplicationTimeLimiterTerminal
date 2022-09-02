@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 
@@ -9,6 +10,7 @@ class Program
 {
     static void Main(string[] args)
     {
+
         KillProcess explorer = new KillProcess();
 
         explorer.ProcessName = Convert.ToString(Console.ReadLine());
@@ -16,4 +18,5 @@ class Program
         explorer.Kill(explorer.ProcessName, false);
 
     }
+
 }

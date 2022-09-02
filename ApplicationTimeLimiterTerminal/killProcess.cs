@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Dynamic;
 
 namespace ApplicationTimeLimiterTerminal;
@@ -22,6 +23,33 @@ public class KillProcess
             process.CloseMainWindow();
         }
             
+    }
+
+    public Process GetStartTime(string? processName)
+    {
+        var procs = Process.GetProcesses();
+        
+        foreach (var proc in procs)
+        {
+            TimeSpan runtime;
+            try
+            {
+                runtime = DateTime.Now - proc.StartTime;
+            }
+            catch (Win32Exception ex)
+            {
+                // Ignore processes that give "access denied" error.
+                if (ex.NativeErrorCode == 5)
+                    continue;
+                throw;
+            }
+
+            float limit = float.Parse(Console.ReadLine());
+            
+            
+            
+            
+        }
     }
 
     public string? ProcessName { get; set; } = "explorer";
