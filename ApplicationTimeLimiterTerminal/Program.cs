@@ -16,8 +16,7 @@ static class Program
         //isRunning determines the state of the program
         bool isRunning = true;
         
-        //Initialize a new key
-        ConsoleKeyInfo key = new ConsoleKeyInfo();
+
         
         
         Console.WriteLine("Press escape to exit");
@@ -36,11 +35,6 @@ static class Program
         while (isRunning)
         {
             
-            if (key.Key == ConsoleKey.Escape)
-            {
-                isRunning = false;
-                break;
-            }
             
             
             Console.WriteLine("1. Kill Process");
@@ -55,34 +49,33 @@ static class Program
 
                 explorer.ProcessName = Convert.ToString(Console.ReadLine());
                 
+                Console.WriteLine();
+                
                 explorer.KillIfLimitIsReached(explorer.ProcessName);
-            
-                Thread.Sleep(1000);
-            
-            
-            
-                Console.WriteLine("Would you like to set another limit? (y/n)");
-                char answer = Convert.ToChar(Console.ReadLine());
-                if (answer == 'y')
-                {
-                    isRunning = true;
-                }
-                else if (answer == 'n')
-                {
-                    isRunning = false;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input");
-                    isRunning = false;
-                }
+
+                isRunning = true;
             }
             
             else if (choice == 2)
             {
+                explorer.SetTimer();
                 
+                isRunning = true;
             }
-           
+    
+            else if (choice == 3)
+            {
+                isRunning = false;
+            }
+            
+            else
+            {
+                Console.WriteLine("Invalid input");
+                isRunning = true;
+            }
+
+
+            Thread.Sleep(1000);
         }
 
         

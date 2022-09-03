@@ -68,10 +68,9 @@ public class KillProcess
     private float GetLimit()
     {
         
-        //Ask for users limit
+        //Get for users limit
 
-        
-        Console.WriteLine("What is your limit?");
+        Console.WriteLine("What is the limit?");
 
         limit = float.Parse(Console.ReadLine());
 
@@ -92,28 +91,6 @@ public class KillProcess
         else
         {
             Console.WriteLine("You have " + _runtime.TotalMinutes + " minutes left");
-            
-            Console.WriteLine("Would you like to set a timer? (y/n)");
-            char answer = char.Parse(Console.ReadLine());
-            
-            if (answer == 'y')
-            {
-                RemainingTime = _runtime;
-            
-                RemainingTimer.Interval = RemainingTime.Milliseconds;
-                RemainingTimer.Start();
-
-                TimedProcessName = processName;
-
-                Console.WriteLine("Done");
-                Console.WriteLine();
-                
-            }
-            else
-            {
-                
-            }
-            
 
         }
         
@@ -121,24 +98,40 @@ public class KillProcess
     
     public void SetTimer()
     {
-        Console.WriteLine("How long would you like the limit to be?");
+        Console.WriteLine("How long would you like the limit to be? (minutes)");
         float time = float.Parse(Console.ReadLine());
 
 
         Console.WriteLine("What is the name of the program?");
 
         string processName = Console.ReadLine().ToString();
+        
+        Console.WriteLine();
 
         TimedProcessName = processName;
         
-        RemainingTimer.Interval = time * 1000;
+        RemainingTimer.Interval = time * 60000;
         RemainingTimer.Start();
+        
+        Console.WriteLine("Timer set");
+        Console.WriteLine();
+
+        
+        RemainingTimer.AutoReset = false;
+        
+        RemainingTimer.Elapsed += (sender, args) => HandleTimer();
+ 
         
     }
 
     void HandleTimer()
     {
         Kill(TimedProcessName);
+        RemainingTimer.Stop();
+        RemainingTimer.Dispose();
+        
+        Console.WriteLine("Program has been killed");
+
     }
 
     public string? ProcessName { get; set; } = "explorer";
@@ -146,7 +139,7 @@ public class KillProcess
     private TimeSpan _runtime;
     private TimeSpan RemainingTime;
     
-    private System.Timers.Timer RemainingTimer = new System.Timers.Timer(1000000000);
+    private Timer RemainingTimer = new Timer(1000000000);
 
     private float limit;
 
