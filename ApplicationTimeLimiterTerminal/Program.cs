@@ -1,10 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-
-
-namespace ApplicationTimeLimiterTerminal;
+﻿namespace ApplicationTimeLimiterTerminal;
 
 static class Program
 {

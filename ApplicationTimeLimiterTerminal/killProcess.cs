@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
-using System.Dynamic;
 using Timer = System.Timers.Timer;
 
 namespace ApplicationTimeLimiterTerminal;
@@ -31,7 +30,7 @@ public class KillProcess
     }
     
     
-    public TimeSpan GetStartTime(string? processName)
+    private TimeSpan GetStartTime(string? processName)
     {
         // Get the start time of the process
         
@@ -70,7 +69,7 @@ public class KillProcess
 
         Console.WriteLine("What is the limit?");
 
-        limit = float.Parse(Console.ReadLine());
+        limit = float.Parse(Console.ReadLine() ?? string.Empty);
 
 
         return limit;
@@ -102,7 +101,7 @@ public class KillProcess
 
         Console.WriteLine("What is the name of the program?");
 
-        string processName = Console.ReadLine().ToString();
+        string processName = Console.ReadLine();
         
         Console.WriteLine();
 
