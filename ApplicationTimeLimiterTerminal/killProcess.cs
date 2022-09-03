@@ -13,7 +13,6 @@ public class KillProcess
         foreach (var process in Process.GetProcessesByName(processName))
         {
             process.Kill(killFamily);
-            process.WaitForExit();
             Console.WriteLine("Process {0} has been killed", processName);
             Console.WriteLine();
         }
@@ -25,7 +24,6 @@ public class KillProcess
         foreach (var process in Process.GetProcessesByName(processName).Skip(1))
         {
             process.CloseMainWindow();
-            process.WaitForExit();
             Console.WriteLine("Process {0} has been killed", processName);
             Console.WriteLine();
         }
