@@ -125,7 +125,7 @@ public class KillProcess
         float time = float.Parse(Console.ReadLine());
 
 
-        Console.WriteLine("What is the name of the process?");
+        Console.WriteLine("What is the name of the program?");
 
         string processName = Console.ReadLine().ToString();
 
