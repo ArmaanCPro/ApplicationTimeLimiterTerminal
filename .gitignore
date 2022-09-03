@@ -5,6 +5,7 @@ riderModule.iml
 /_ReSharper.Caches/
 
 .idea
+.vscode
 ApplicationTimeLimiterTerminal/obj/ApplicationTimeLimiterTerminal.csproj.nuget.dgspec.json
 ApplicationTimeLimiterTerminal/obj/ApplicationTimeLimiterTerminal.csproj.nuget.g.props
 ApplicationTimeLimiterTerminal/obj/Debug/net6.0/ApplicationTimeLimiterTerminal.assets.cache
