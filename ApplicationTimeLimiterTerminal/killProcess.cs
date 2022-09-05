@@ -83,7 +83,7 @@ public class KillProcess
         
         if (GetStartTime(processName).TotalMinutes > GetLimit())
         {
-            Kill(processName);
+            Kill(processName, true);
         }
         else
         {
@@ -123,7 +123,7 @@ public class KillProcess
 
     void HandleTimer()
     {
-        Kill(TimedProcessName);
+        Kill(TimedProcessName, true);
         RemainingTimer.Stop();
         RemainingTimer.Dispose();
         
