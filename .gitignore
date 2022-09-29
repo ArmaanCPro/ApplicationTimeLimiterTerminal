@@ -8,6 +8,7 @@ riderModule.iml
 .vscode
 .vs
 scriptcs_bin
+APTLTInstaller
 
 ApplicationTimeLimiterTerminal/obj/ApplicationTimeLimiterTerminal.csproj.nuget.dgspec.json
 ApplicationTimeLimiterTerminal/obj/ApplicationTimeLimiterTerminal.csproj.nuget.g.props
