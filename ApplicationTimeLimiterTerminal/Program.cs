@@ -11,7 +11,6 @@ static class Program
         Console.WriteLine();
         //Initialize the object outside of loop
         KillProcess explorer = new KillProcess();
-        bool KillingProcess = true;
         while (isRunning)
         {
             Console.WriteLine("1. Kill Process");
