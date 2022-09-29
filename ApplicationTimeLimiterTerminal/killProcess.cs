@@ -42,7 +42,7 @@ public class KillProcess
             try
             {
                 //Get the amount of time the process has been running
-                _runtime = DateTime.Now - proc.StartTime;
+                runtime = DateTime.Now - proc.StartTime;
                 
 
             }
@@ -57,7 +57,7 @@ public class KillProcess
 
         }
 
-        return _runtime;
+        return runtime;
 
 
     }
@@ -87,7 +87,7 @@ public class KillProcess
         }
         else
         {
-            Console.WriteLine("You have " + _runtime.TotalMinutes + " minutes left");
+            Console.WriteLine("You have " + runtime.TotalMinutes + " minutes left");
 
         }
         
@@ -96,12 +96,12 @@ public class KillProcess
     public void SetTimer()
     {
         Console.WriteLine("How long would you like the limit to be? (minutes)");
-        float time = float.Parse(Console.ReadLine());
+        float time = float.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
 
 
         Console.WriteLine("What is the name of the program?");
 
-        string processName = Console.ReadLine();
+        string processName = Console.ReadLine() ?? throw new InvalidOperationException();
         
         Console.WriteLine();
 
@@ -133,8 +133,10 @@ public class KillProcess
 
     public string? ProcessName { get; set; } = "explorer";
     
-    private TimeSpan _runtime;
+    private TimeSpan runtime;
+/*
     private TimeSpan RemainingTime;
+*/
     
     private Timer RemainingTimer = new Timer(1000000000);
 
