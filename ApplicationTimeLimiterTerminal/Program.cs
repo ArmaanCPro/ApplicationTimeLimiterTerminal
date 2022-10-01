@@ -16,6 +16,10 @@ static class Program
             Console.WriteLine("1. Kill Process");
             Console.WriteLine("2. Set Limit");
             Console.WriteLine("3. Exit");
+            Console.WriteLine("4. View Process");
+            
+            Console.WriteLine();
+
             int choice = Convert.ToInt32(Console.ReadLine());
             if (choice == 1)
             {
@@ -23,8 +27,10 @@ static class Program
                 explorer.ProcessName = Convert.ToString(Console.ReadLine());
                 Console.WriteLine();
                 
-                if (explorer.ProcessName != null) 
-                    explorer.KillIfLimitIsReached(explorer.ProcessName);
+                if (explorer.ProcessName != null) //Null safety check
+                    explorer.Kill(explorer.ProcessName, true);
+                    //explorer.KillIfLimitIsReached(explorer.ProcessName);
+                
                 
                 isRunning = true;
             }
@@ -36,6 +42,11 @@ static class Program
             else if (choice == 3)
             {
                 isRunning = false;
+            }
+            else if (choice == 4)
+            {
+                Console.WriteLine("You have " + explorer.GetRuntime() + " minutes left");
+                Console.WriteLine();
             }
             else
             {

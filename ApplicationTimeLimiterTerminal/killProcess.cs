@@ -6,7 +6,7 @@ namespace ApplicationTimeLimiterTerminal;
 
 public class KillProcess
 {
-    //Overload Kill method with ClosMainWindow and Kill methods
+    //Overload Kill method with CloseMainWindow and Kill methods
     public void Kill(string? processName, bool killFamily)
     {
         foreach (var process in Process.GetProcessesByName(processName))
@@ -18,7 +18,7 @@ public class KillProcess
             
     } 
     //Kill method overload
-    public void Kill(string? processName)
+    private void Kill(string? processName)
     {
         foreach (var process in Process.GetProcessesByName(processName).Skip(1))
         {
@@ -35,6 +35,9 @@ public class KillProcess
         // Get the start time of the process
         
         var procs = Process.GetProcessesByName(processName);
+
+
+        
         
         foreach (var proc in procs)
         {
@@ -44,7 +47,6 @@ public class KillProcess
                 //Get the amount of time the process has been running
                 runtime = DateTime.Now - proc.StartTime;
                 
-
             }
             catch (Win32Exception ex)
             {
@@ -128,15 +130,22 @@ public class KillProcess
         RemainingTimer.Dispose();
         
         Console.WriteLine("Program has been killed");
+        Console.WriteLine();
 
+    }
+
+    public double GetRuntime()
+    {
+        return (Double.Parse(RemainingTimer.Interval.ToString())) / 60000; //Dividing by 60000 to get minutes, otherwise it is in seconds
     }
 
     public string? ProcessName { get; set; } = "explorer";
     
     private TimeSpan runtime;
-/*
-    private TimeSpan RemainingTime;
-*/
+    
+
+    //private TimeSpan RemainingTime;
+
     
     private Timer RemainingTimer = new Timer(1000000000);
 
